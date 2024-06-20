@@ -28,4 +28,20 @@ public static class RegionExtensions
                 Districts = region.Districts.GetByLanguage(language)
             }
         );
+    
+    public static object GetSingleByLanguage(this List<Region> regions, Language language)
+        => regions.Select(region =>
+            new
+            {
+                region.Id,
+                Name = language switch
+                {
+                    Language.uz => region.Name_Uz,
+                    Language.oz => region.Name_Oz,
+                    Language.en => region.Name_En,
+                    Language.ru => region.Name_Ru,
+                    _ => region.Name_Uz,
+                }
+            }
+        );
 }

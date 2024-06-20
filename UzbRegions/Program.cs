@@ -20,21 +20,21 @@ builder.Services.AddCors(options =>
 
 #region Add rate limiting to DI services
 
-/*builder.Services.Configure<IpRateLimitOptions>
+builder.Services.Configure<IpRateLimitOptions>
     (builder.Configuration.GetSection("IpRateLimit"));
 builder.Services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
 builder.Services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
 builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 builder.Services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
 builder.Services.AddMemoryCache();
-builder.Services.AddHttpContextAccessor();*/
+builder.Services.AddHttpContextAccessor();
 #endregion
 
 var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
-//app.UseIpRateLimiting();
+app.UseIpRateLimiting();
 app.UseHttpsRedirection();
 app.UseCors("DefaultCorsPolicyName");
 app.UseAuthorization();
