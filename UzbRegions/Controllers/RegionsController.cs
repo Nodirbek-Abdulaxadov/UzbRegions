@@ -50,8 +50,8 @@ public class RegionsController : ControllerBase
     }
 
     [HttpGet("api/districts")]
-    [OutputCache(Duration = 86_400_000)]
-    [ResponseCache(Duration = 86_400_000)]
+    [OutputCache(Duration = 1)]
+    [ResponseCache(Duration = 1)]
     public IActionResult GetDistrictByLanguage([FromQuery] DistrictQueryParams districtQueryParams)
     {
         var region = Regions.FirstOrDefault(r => r.Id == districtQueryParams.region_id);
